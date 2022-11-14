@@ -4,3 +4,5 @@ Foreach ($i in $(Get-Content vars.txt)){Set-Variable -Name $i.split("=")[0] -Val
 Write-Host "Deploying app onto K8s cluster $clusterName" -ForegroundColor Yellow
 
 kubectl apply -f ..\deployment-files
+
+Write-Host "Complted: run [kubectl get/describe pods] to see details" -ForegroundColor Green

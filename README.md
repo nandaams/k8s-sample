@@ -4,6 +4,13 @@
 
 The .NET apps can run on either Linux or Windows (since it's .NET Core). However, for this guide, we will focus mainly on Windows platform.
 
+### Pre-requisite
+- The following tools are installed on your Windows dev machine: 
+    - [_Docker desktop_](https://docs.docker.com/desktop/install/windows-install/)
+    - [_Azure CLI_](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
+    - Azure subscription with a few credits, [see how to get free monthly credits here](https://azure.microsoft.com/en-us/pricing/member-offers/credit-for-visual-studio-subscribers/).
+- This example was run on, but not limited to _Windows 10, 21 H2_.
+
 ### Build the images
 
 - `git clone git@github.com:nandaams/dotnet-kubernetes.git`
