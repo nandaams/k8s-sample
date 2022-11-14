@@ -1,0 +1,6 @@
+resourceGroup=pizza-demo2
+resourceGroupAZ=eastus
+clusterName=aks-pizza
+winUsername=adminpizza
+winPassword=@dmin5i33a!!#2022 #must be atleast 14 chars
+windowsNodepoolName=npwin

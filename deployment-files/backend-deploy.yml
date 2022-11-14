@@ -2,35 +2,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pizzafrontend
+  name: pizzabackend #default dns name
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: pizzafrontend
+        app: pizzabackend
     spec:
+      nodeSelector:
+        "kubernetes.io/os": windows
       containers:
-      - name: pizzafrontend
-        image: [YOUR DOCKER USERNAME]/pizzafrontend
+      - name: pizzabackend
+        image: docker.io/profnandaa/pizzabackend:latest
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_URLS
           value: http://*:80
-        - name: backendUrl
-          value: http://pizzabackend
   selector:
     matchLabels:
-      app: pizzafrontend
+      app: pizzabackend
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: pizzafrontend
-spec:
-  type: LoadBalancer
+  name: pizzabackend
+spec:  
   ports:
   - port: 80
+  type: ClusterIP
   selector:
-    app: pizzafrontend
+    app: pizzabackend

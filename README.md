@@ -1,17 +1,68 @@
+> Adopted from https://github.com/MicrosoftDocs/mslearn-dotnet-kubernetes
 
-# Contributing
+# Seup Guide
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+The .NET apps can run on either Linux or Windows (since it's .NET Core). However, for this guide, we will focus mainly on Windows platform.
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+### Build the images
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+- `git clone git@github.com:nandaams/dotnet-kubernetes.git`
+- `cd` into `dotnet-kubernetes` directory
+- Make sure your Docker desktop is running
+- run: `docker-compose build`
+- Test locally: `docker-compose up`
+- The front end should be accessed at `http://localhost:5092`
+
+### Upload the images to Docker Hub
+
+Login into docker:
+```
+docker login
+```
+
+Retag the images:
+```
+docker tag pizzafrontend [YOUR DOCKER USER NAME]/pizzafrontend
+docker tag pizzabackend [YOUR DOCKER USER NAME]/pizzabackend
+```
+
+### Create AKS Cluster
+
+> _Run all this from Powershell_
+
+- `cd` into `ps-scripts`
+- Update `vars.txt`
+- Run `.\aks-create.ps1` - the script create an AKS cluster, adds a Windows node pool and connects to the cluster.
+
+### Deploy the application
+
+- Shortcut: while still in `ps-scripts` directory, you can just run `.\deploy.ps1` OR
+- `cd` into `deployment-files` directory.
+- Run `kubectl apply -f .`
+- After a few minutes, if you run `kubectl get services`, you should get something similar to:
+
+```
+NAME            TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)        AGE
+kubernetes      ClusterIP      10.0.0.1      <none>          443/TCP        36m
+pizzabackend    ClusterIP      10.0.253.68   <none>          80/TCP         8m7s
+pizzafrontend   LoadBalancer   10.0.191.38   4.236.217.199   80:30172/TCP   6m19s
+```
+
+- Access the frontend with the given external IP: `http://EXTERNAL-IP`, e.g. `http://4.236.217.199`
+
+### Clean-up
+Clean up by deleting the resource group, in `ps-scripts`, run: `.\clean-up.ps1`
+
+### TODO
+
+- [ ] remove unused namespaces in .cs files
+- [ ] add Log Monitor
+- [ ] connect to Azure Monitor or ELK logging stack
+
+## References
+
+- https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-cli
+- https://learn.microsoft.com/en-us/azure/aks/learn/quick-windows-container-deploy-cli
 
 # Legal Notices
 
