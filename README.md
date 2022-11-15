@@ -1,6 +1,6 @@
 > Adopted from https://github.com/MicrosoftDocs/mslearn-dotnet-kubernetes
 
-# Seup Guide
+# Setup Guide
 
 The .NET apps can run on either Linux or Windows (since it's .NET Core). However, for this guide, we will focus mainly on Windows platform.
 
