@@ -12,17 +12,27 @@ $subscriptionId = (az account show | ConvertFrom-Json).id
 $tenantId = (az account show | ConvertFrom-Json).tenantId
 Write-Host "Subscription Id: $subscriptionId, Tenant Id: $tenantId" -ForegroundColor Green
 
+# az aks create `
+#     --resource-group $resourceGroup `
+#     --name $clusterName `
+#     --node-count 2 `
+#     --enable-addons monitoring `
+#     --generate-ssh-keys `
+#     --windows-admin-username $winUsername `
+#     --windows-admin-password $winPassword `
+#     --vm-set-type VirtualMachineScaleSets `
+#     --network-plugin azure
+
+# removing the "--enable-addons monitoring" // fails on our subscription
 az aks create `
     --resource-group $resourceGroup `
     --name $clusterName `
     --node-count 2 `
-    --enable-addons monitoring `
     --generate-ssh-keys `
     --windows-admin-username $winUsername `
     --windows-admin-password $winPassword `
     --vm-set-type VirtualMachineScaleSets `
     --network-plugin azure
-
 
 Write-Host "Getting cluster configuration" -ForegroundColor Yellow
 az aks get-credentials --resource-group $resourceGroup --name $clusterName
@@ -34,6 +44,6 @@ Write-Host "Adding Windows Server containers node pool" -ForegroundColor Yellow
 az aks nodepool add `
     --resource-group $resourceGroup `
     --cluster-name $clusterName `
-    --os-type Windows `
+    --os-type $osType `
     --name $windowsNodepoolName `
     --node-count 1
