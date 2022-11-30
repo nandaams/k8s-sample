@@ -10,4 +10,10 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 COPY --from=build /app .
-ENTRYPOINT ["dotnet", "frontend.dll"]
+
+# add LogMonitor.exe, manually moved the file to /bin to be ignored
+WORKDIR /LogMonitor
+COPY bin/LogMonitor.exe ./LogMonitor.exe
+COPY LogMonitorConfig.json ./LogMonitorConfig.json
+
+ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "dotnet C:\\app\\frontend.dll"]
