@@ -16,4 +16,6 @@ WORKDIR /LogMonitor
 COPY bin/LogMonitor.exe ./LogMonitor.exe
 COPY LogMonitorConfig.json ./LogMonitorConfig.json
 
-ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "dotnet C:\\app\\frontend.dll"]
+WORKDIR /app
+
+ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "dotnet frontend.dll"]

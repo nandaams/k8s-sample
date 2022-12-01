@@ -1,0 +1,58 @@
+<LogEntry> // introduce
+    <Source>EtwEvent</Source>
+    <Time>2022-11-30T09:40:22.000Z</Time>
+    <Provider idGuid="{7E8AD27F-B271-4EA2-A783-A47BDE29143B}"/>
+    <DecodingSource>DecodingSourceXMLFile</DecodingSource>
+    <Execution ProcessID="8300" ThreadID="4440" />
+    <Level>Information</Level>
+    <Keyword>0x8000000000000000</Keyword>
+    <EventID Qualifiers="6200">6200</EventID>
+    <EventData>
+        <EnabledFieldsFlags>2478079</EnabledFieldsFlags>
+        <date>2022-11-30</date>
+        <time>09:40:27</time>
+        <c-ip>10.224.0.4</c-ip>
+        <cs-username>-</cs-username>
+        <s-sitename>W3SVC1</s-sitename>
+        <s-computername>iislogmonitor-847fbf7766-rqr4b</s-computername>
+        <s-ip>10.224.0.171</s-ip>
+        <cs-method>GET</cs-method>
+        <cs-uri-stem>/.env</cs-uri-stem>
+        <cs-uri-query>-</cs-uri-query>
+        <sc-status>404</sc-status>
+        <sc-win32-status>2</sc-win32-status>
+        <sc-bytes>1383</sc-bytes>
+        <cs-bytes>232</cs-bytes>
+        <time-taken>89</time-taken>
+        <s-port>80</s-port>
+        <csUser-Agent>Mozilla/5.0+(X11 +Linux+x86_64)+AppleWebKit/537.36+(KHTML,+like+Gecko)+Chrome/81.0.4044.129+Safari/537.36</csUser-Agent>
+        <csCookie>-</csCookie>
+        <csReferer>-</csReferer>
+        <cs-version>-</cs-version>
+        <cs-host>-</cs-host>
+        <sc-substatus>0</sc-substatus>
+        <CustomFields></CustomFields>
+    </EventData>
+</LogEntry>
+
+===
+
+<Source>EventLog</Source>
+<Time>2022-11-30T16:39:18.000Z</Time>
+<LogEntry>
+    <Channel>System</Channel>
+    <Level>Error</Level>
+    <EventId>701</EventId>
+    <Message>Task Scheduler service failed to start Task Compatibility module. Tasks may not be able to register on previous Window versions. Additional Data: Error Value: 2147942526.</Message>
+</LogEntry>
+
+// propose to re-arrange the placement for <LogEntry>
+
+<LogEntry>
+    <Source>EventLog</Source>
+    <Time>2022-11-30T16:39:18.000Z</Time>
+    <Channel>System</Channel>
+    <Level>Error</Level>
+    <EventId>701</EventId>
+    <Message>Task Scheduler service failed to start Task Compatibility module. Tasks may not be able to register on previous Window versions. Additional Data: Error Value: 2147942526.</Message>
+</LogEntry>

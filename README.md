@@ -40,6 +40,7 @@ docker tag pizzabackend [YOUR DOCKER USER NAME]/pizzabackend
 - `az login` (if you have multiple subscriptions, make sure you have the right subscription set as default.)
 - `cd` into `ps-scripts`
 - Update `vars.txt`
+- Run `.\rg-create.ps1` to create the resource group.
 - Run `.\aks-create.ps1` - the script create an AKS cluster, adds a Windows node pool and connects to the cluster.
 
 ### Deploy the application
