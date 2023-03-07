@@ -1,7 +1,9 @@
 FROM mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019
 WORKDIR /LogMonitor
 COPY LogMonitorConfig.json .
-RUN powershell.exe -command wget -uri https://github.com/microsoft/windows-container-tools/releases/download/v1.1/LogMonitor.exe -outfile LogMonitor.exe
+RUN powershell.exe -command wget \
+  -uri https://github.com/microsoft/windows-container-tools/releases/download/v2.0-rc0/LogMonitor.exe \
+  -outfile LogMonitor.exe
 # Change the startup type of the IIS service from Automatic to Manual
 RUN sc config w3svc start=demand
 # Enable ETW logging for Default Web Site on IIS
